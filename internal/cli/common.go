@@ -40,24 +40,24 @@ func checkIfDirIsEmpty(dirPath string) error {
 
 func parseEnv() {
 	var err error
-	ColoniesServerHostEnv := os.Getenv("COLONIES_SERVER_HOST")
+	ColoniesServerHostEnv := os.Getenv("COLONIES_CLIENT_HTTP_HOST")
 	if ColoniesServerHostEnv != "" {
 		ColoniesServerHost = ColoniesServerHostEnv
 	}
 
-	ColoniesServerPortEnvStr := os.Getenv("COLONIES_SERVER_PORT")
+	ColoniesServerPortEnvStr := os.Getenv("COLONIES_CLIENT_HTTP_PORT")
 	if ColoniesServerPortEnvStr != "" {
 		ColoniesServerPort, err = strconv.Atoi(ColoniesServerPortEnvStr)
 		CheckError(err)
 	}
 
-	ColoniesTLSEnv := os.Getenv("COLONIES_SERVER_TLS")
-	if ColoniesTLSEnv == "true" {
-		ColoniesUseTLS = true
-		ColoniesInsecure = false
-	} else if ColoniesTLSEnv == "false" {
+	ColoniesInsecureEnv := os.Getenv("COLONIES_CLIENT_HTTP_INSECURE")
+	if ColoniesInsecureEnv == "true" {
 		ColoniesUseTLS = false
 		ColoniesInsecure = true
+	} else if ColoniesInsecureEnv == "false" {
+		ColoniesUseTLS = true
+		ColoniesInsecure = false
 	}
 
 	VerboseEnv := os.Getenv("COLONIES_VERBOSE")

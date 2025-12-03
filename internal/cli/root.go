@@ -12,9 +12,9 @@ const KEYCHAIN_PATH = ".colonies"
 
 var ASCII bool
 var Verbose bool
-var ColoniesServerHost string
-var ColoniesServerPort int
-var ColoniesInsecure bool
+var ColoniesServerHost string = "localhost"
+var ColoniesServerPort int = 50080
+var ColoniesInsecure bool = true
 var ColoniesSkipTLSVerify bool
 var ColoniesUseTLS bool
 var ColonyName string
